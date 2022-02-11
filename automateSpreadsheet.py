@@ -17,7 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SERVICE_ACCOUNT_FILE = "creds.json"
+SERVICE_ACCOUNT_FILE = "./creds.json"
 
 creds = None
 creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -87,7 +87,7 @@ def on_open():
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
-        PATH = r"C:\Users\Ricem\Documents\Code\PokernowInfo\chromedriver.exe"
+        PATH = "./driver/chromedriver.exe"
         driver = webdriver.Chrome(PATH, chrome_options=options)
         link = e.get()
         if "https" not in link:
@@ -101,8 +101,6 @@ def on_open():
     datesRange = "Copy of May W3!c1:u1"
     players = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                 range=namesRange).execute()
-    netGainsLosses = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
-                                range=netRange).execute()
     dates = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                 range=datesRange).execute()
 
